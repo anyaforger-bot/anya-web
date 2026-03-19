@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 import LanguageSwitcher from './LanguageSwitcher'
 
 const SECTIONS = ['hero', 'about', 'skills', 'quotes']
@@ -81,6 +82,13 @@ export default function Navbar() {
               </a>
             )
           })}
+          <Link
+            href="/status"
+            className="text-sm transition-colors duration-200 relative group text-gray-300 hover:text-neon-purple"
+          >
+            {t('status')}
+            <span className="absolute -bottom-1 left-0 h-px bg-gradient-to-r from-purple-500 to-pink-500 w-0 group-hover:w-full transition-all duration-300" />
+          </Link>
           <a
             href="#quotes"
             className="px-4 py-1.5 text-sm rounded-full border border-purple-500/50 text-purple-300 hover:border-purple-400 hover:text-white hover:shadow-[0_0_15px_#b347ff44] transition-all duration-300"
@@ -132,6 +140,13 @@ export default function Navbar() {
                   </a>
                 )
               })}
+              <Link
+                href="/status"
+                className="text-gray-300 hover:text-purple-400 transition-colors py-1"
+                onClick={() => setMenuOpen(false)}
+              >
+                {t('status')}
+              </Link>
             </div>
           </motion.div>
         )}
