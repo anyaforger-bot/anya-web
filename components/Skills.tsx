@@ -6,10 +6,10 @@ import { motion, useInView } from 'framer-motion'
 const skills = [
   {
     icon: '🔮',
-    title: 'Mind Reading',
-    subtitle: 'Esper Ability Lv. MAX',
-    description: 'Full telepathic access to all nearby thought streams. No encryption can stop her. WISE has tried.',
-    tags: ['Telepathy', 'Always On', 'Undetectable'],
+    title: 'อ่านใจ',
+    subtitle: 'พลังเอสเปอร์ ระดับ MAX',
+    description: 'เข้าถึงความคิดทุกคนในรัศมีได้ทันที ไม่มีการเข้ารหัสใดหยุดได้ WISE พยายามแล้ว',
+    tags: ['เทเลพาธี', 'เปิดตลอดเวลา', 'ตรวจจับไม่ได้'],
     color: 'purple',
     gradient: 'from-purple-600 to-violet-500',
     glow: 'rgba(139,92,246,0.4)',
@@ -17,10 +17,10 @@ const skills = [
   },
   {
     icon: '🕵️',
-    title: 'Infiltration',
-    subtitle: 'Cover Identity Specialist',
-    description: 'Successfully maintained a fake family cover for months. No one suspects a thing. Not even her parents.',
-    tags: ['Undercover', 'Deep Cover', 'Family Unit'],
+    title: 'แทรกซึม',
+    subtitle: 'ผู้เชี่ยวชาญตัวตนปลอม',
+    description: 'รักษาตัวตนครอบครัวปลอมมาหลายเดือนโดยไม่มีใครสงสัย แม้แต่พ่อแม่เองก็ไม่รู้',
+    tags: ['ใต้ดิน', 'ปกปิดลึก', 'หน่วยครอบครัว'],
     color: 'blue',
     gradient: 'from-blue-600 to-cyan-500',
     glow: 'rgba(59,130,246,0.4)',
@@ -28,10 +28,10 @@ const skills = [
   },
   {
     icon: '😇',
-    title: 'Acting Innocent',
-    subtitle: 'Oscar-Worthy Performance',
-    description: 'Can deploy the power of "big eyes and a cute smile" to escape virtually any situation. 97% success rate.',
-    tags: ['Deception', 'Cuteness', 'Plausible Deniability'],
+    title: 'แกล้งทำเป็นเด็กดี',
+    subtitle: 'การแสดงระดับออสการ์',
+    description: 'ใช้พลัง "ตาโตน่ารัก" หลุดจากทุกสถานการณ์ได้ อัตราความสำเร็จ 97%',
+    tags: ['หลอกลวง', 'น่ารัก', 'ปฏิเสธได้เสมอ'],
     color: 'pink',
     gradient: 'from-pink-600 to-rose-500',
     glow: 'rgba(236,72,153,0.4)',
@@ -39,10 +39,10 @@ const skills = [
   },
   {
     icon: '⚡',
-    title: 'Waku Waku Detection',
-    subtitle: 'Excitement Radar',
-    description: 'Sixth sense for detecting incoming excitement, adventure, and spy action. Activates before the mission briefing ends.',
-    tags: ['Sixth Sense', 'Adventure', 'Pure Hype'],
+    title: 'เรดาร์วากูวากู',
+    subtitle: 'ตรวจจับความตื่นเต้น',
+    description: 'สัมผัสที่หกสำหรับความตื่นเต้น การผจญภัย และการสอดแนม ทำงานก่อนบรีฟมิชชันจะจบ',
+    tags: ['สัมผัสที่หก', 'การผจญภัย', 'ฮาร์ปบริสุทธิ์'],
     color: 'yellow',
     gradient: 'from-yellow-500 to-amber-400',
     glow: 'rgba(234,179,8,0.4)',
@@ -50,10 +50,10 @@ const skills = [
   },
   {
     icon: '🥜',
-    title: 'Peanut Expertise',
-    subtitle: 'World-Class Connoisseur',
-    description: 'Encyclopedic knowledge of peanut varieties, preparations, and optimal consumption contexts. It is a skill. Stop judging.',
-    tags: ['Nutrition', 'Strategy', 'Motivation'],
+    title: 'ผู้เชี่ยวชาญถั่วลิสง',
+    subtitle: 'ระดับโลก',
+    description: 'มีความรู้ครบถ้วนเรื่องถั่วลิสงทุกสายพันธุ์ วิธีปรุง และบริบทที่เหมาะสม นี่คือทักษะ อย่าตัดสิน',
+    tags: ['โภชนาการ', 'กลยุทธ์', 'แรงจูงใจ'],
     color: 'orange',
     gradient: 'from-orange-500 to-amber-500',
     glow: 'rgba(249,115,22,0.4)',
@@ -61,10 +61,10 @@ const skills = [
   },
   {
     icon: '💥',
-    title: 'Chaos Generation',
-    subtitle: 'Natural Talent',
-    description: 'Passive ability. Any normal situation within a 10-meter radius is spontaneously transformed into a comedic disaster.',
-    tags: ['Passive', 'AoE', 'Cannot Be Disabled'],
+    title: 'สร้างความวุ่นวาย',
+    subtitle: 'พรสวรรค์ตามธรรมชาติ',
+    description: 'ทักษะ passive สถานการณ์ปกติในรัศมี 10 เมตร จะถูกแปลงเป็นหายนะตลกขบขันโดยอัตโนมัติ',
+    tags: ['Passive', 'AoE', 'ปิดไม่ได้'],
     color: 'red',
     gradient: 'from-red-600 to-orange-500',
     glow: 'rgba(239,68,68,0.4)',
@@ -87,7 +87,6 @@ export default function Skills() {
 
   return (
     <section id="skills" className="relative py-24 px-6" ref={ref}>
-      {/* BG decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-0 left-0 right-0 h-px"
@@ -100,23 +99,21 @@ export default function Skills() {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-pink-400 text-sm font-semibold uppercase tracking-widest mb-3">Skill Tree</p>
+          <p className="text-pink-400 text-sm font-semibold uppercase tracking-widest mb-3">ต้นไม้ทักษะ</p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4">
-            Anya&apos;s <span className="shimmer-text">Abilities</span>
+            ความสามารถของ<span className="shimmer-text">อาเนีย</span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            All skills verified by WISE agents in the field. Results may vary. WISE accepts no liability for peanut-related incidents.
+            ทักษะทั้งหมดได้รับการยืนยันจากเจ้าหน้าที่ WISE ในสนาม ผลลัพธ์อาจแตกต่างกัน WISE ไม่รับผิดชอบเหตุการณ์เกี่ยวกับถั่วลิสง
           </p>
         </motion.div>
 
-        {/* Skill cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {skills.map((skill, i) => (
             <motion.div
@@ -125,24 +122,18 @@ export default function Skills() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.08 * i }}
               className="group relative glass-card rounded-2xl p-6 overflow-hidden transition-all duration-300 hover:scale-[1.02] cursor-default"
-              style={{
-                borderColor: 'rgba(179,71,255,0.15)',
-              }}
+              style={{ borderColor: 'rgba(179,71,255,0.15)' }}
             >
-              {/* Hover glow bg */}
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
                 style={{ background: `radial-gradient(circle at 50% 0%, ${skill.glow} 0%, transparent 70%)` }}
               />
-
-              {/* Top accent line */}
               <div
                 className="absolute top-0 left-6 right-6 h-px opacity-60 group-hover:opacity-100 transition-opacity duration-300"
                 style={{ background: `linear-gradient(90deg, transparent, ${skill.glow.replace('0.4', '0.8')}, transparent)` }}
               />
 
               <div className="relative z-10">
-                {/* Icon + level */}
                 <div className="flex items-start justify-between mb-4">
                   <div
                     className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 group-hover:animate-wiggle"
@@ -166,13 +157,9 @@ export default function Skills() {
                 </p>
                 <p className="text-gray-400 text-sm leading-relaxed mb-4">{skill.description}</p>
 
-                {/* Tags */}
                 <div className="flex flex-wrap gap-1.5">
                   {skill.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className={`text-xs px-2 py-0.5 rounded-full border ${colorMap[skill.color]}`}
-                    >
+                    <span key={tag} className={`text-xs px-2 py-0.5 rounded-full border ${colorMap[skill.color]}`}>
                       {tag}
                     </span>
                   ))}

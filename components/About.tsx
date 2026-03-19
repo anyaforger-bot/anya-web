@@ -4,19 +4,19 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const stats = [
-  { label: 'Mind Reading', value: 99, color: 'from-purple-500 to-violet-400', icon: '🔮' },
-  { label: 'Peanut Consumption', value: 100, color: 'from-yellow-500 to-amber-400', icon: '🥜' },
-  { label: 'Studying', value: 12, color: 'from-pink-500 to-rose-400', icon: '📚' },
-  { label: 'Acting Innocent', value: 97, color: 'from-blue-500 to-cyan-400', icon: '😇' },
-  { label: 'Mission Success', value: 78, color: 'from-green-500 to-emerald-400', icon: '🕵️' },
-  { label: 'Chaos Generation', value: 95, color: 'from-red-500 to-orange-400', icon: '💥' },
+  { label: 'อ่านใจ', value: 99, color: 'from-purple-500 to-violet-400', icon: '🔮' },
+  { label: 'กินถั่วลิสง', value: 100, color: 'from-yellow-500 to-amber-400', icon: '🥜' },
+  { label: 'ตั้งใจเรียน', value: 12, color: 'from-pink-500 to-rose-400', icon: '📚' },
+  { label: 'แกล้งทำเป็นเด็กดี', value: 97, color: 'from-blue-500 to-cyan-400', icon: '😇' },
+  { label: 'ความสำเร็จของภารกิจ', value: 78, color: 'from-green-500 to-emerald-400', icon: '🕵️' },
+  { label: 'สร้างความวุ่นวาย', value: 95, color: 'from-red-500 to-orange-400', icon: '💥' },
 ]
 
 const traits = [
-  { icon: '🔮', title: 'Esper Powers', desc: 'Can read minds at will. Uses this responsibly. (She does not.)' },
-  { icon: '🥜', title: 'Peanut Connoisseur', desc: 'Certified expert in all things peanut. Will trade state secrets for snacks.' },
-  { icon: '🎭', title: 'Master of Disguise', desc: 'Impersonates a normal child every single day. Oscar-worthy performance.' },
-  { icon: '💜', title: 'Secret Softie', desc: 'Wants nothing more than for her family to stay together. Don\'t tell anyone.' },
+  { icon: '🔮', title: 'พลังเอสเปอร์', desc: 'อ่านใจคนได้ตลอดเวลา และใช้มันอย่างรับผิดชอบ (ไม่ได้ใช้เลย)' },
+  { icon: '🥜', title: 'ผู้เชี่ยวชาญถั่วลิสง', desc: 'มีความรู้ลึกซึ้งเรื่องถั่วลิสงทุกชนิด พร้อมแลกความลับชาติเพื่อของกิน' },
+  { icon: '🎭', title: 'ปรมาจารย์แสร้งทำ', desc: 'แสดงเป็นเด็กธรรมดาทุกวัน ถือเป็นการแสดงระดับออสการ์' },
+  { icon: '💜', title: 'ใจอ่อนในที่ลับ', desc: 'ต้องการแค่ให้ครอบครัวอยู่ด้วยกัน อย่าบอกใครนะ' },
 ]
 
 function StatBar({ stat, animate }: { stat: typeof stats[0]; animate: boolean }) {
@@ -53,7 +53,6 @@ export default function About() {
 
   return (
     <section id="about" className="relative py-24 px-6" ref={ref}>
-      {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute top-1/4 -left-32 w-64 h-64 rounded-full"
@@ -66,24 +65,22 @@ export default function About() {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-purple-400 text-sm font-semibold uppercase tracking-widest mb-3">Intel File</p>
+          <p className="text-purple-400 text-sm font-semibold uppercase tracking-widest mb-3">แฟ้มข้อมูลลับ</p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4">
-            About <span className="shimmer-text">Anya</span>
+            เกี่ยวกับ <span className="shimmer-text">อาเนีย</span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Classified dossier on Subject A. Handle with extreme care. Do not let her catch you reading this — she already knows.
+            แฟ้มลับของเป้าหมาย A โปรดระวังเป็นพิเศษ อย่าให้เธอจับได้ว่ากำลังอ่านอยู่ เพราะเธอรู้อยู่แล้ว
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Trait cards */}
           <div className="space-y-4">
             {traits.map((trait, i) => (
               <motion.div
@@ -103,7 +100,6 @@ export default function About() {
               </motion.div>
             ))}
 
-            {/* Quote card */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -113,14 +109,12 @@ export default function About() {
             >
               <div className="absolute top-4 left-4 text-6xl text-purple-500/20 font-display font-black leading-none">&ldquo;</div>
               <p className="relative z-10 text-lg text-gray-200 italic leading-relaxed pt-4 pl-4">
-                Heh. I know what you&apos;re thinking. You think I&apos;m just a little kid.
-                That&apos;s exactly what I want you to think.
+                เฮ้ อาเนียรู้ว่าคุณกำลังคิดอะไรอยู่ คุณคิดว่าอาเนียเป็นแค่เด็กเล็กๆ นั่นแหละที่อาเนียอยากให้คิด
               </p>
-              <p className="mt-3 text-purple-400 text-sm font-semibold text-right">— Anya Forger, probably</p>
+              <p className="mt-3 text-purple-400 text-sm font-semibold text-right">— อาเนีย ฟอร์เจอร์ (น่าจะพูด)</p>
             </motion.div>
           </div>
 
-          {/* Stats panel */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -131,8 +125,8 @@ export default function About() {
               <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #7c2ff7, #c940b0)' }}>
                 <span className="text-sm">📊</span>
               </div>
-              <h3 className="font-bold text-white">Character Stats</h3>
-              <span className="ml-auto text-xs text-purple-400 bg-purple-900/30 px-2 py-0.5 rounded-full">Classified</span>
+              <h3 className="font-bold text-white">สถิติตัวละคร</h3>
+              <span className="ml-auto text-xs text-purple-400 bg-purple-900/30 px-2 py-0.5 rounded-full">ลับสุดยอด</span>
             </div>
 
             <div className="space-y-6">
@@ -148,17 +142,16 @@ export default function About() {
               ))}
             </div>
 
-            {/* Overall rating */}
             <div className="mt-8 pt-6 border-t border-purple-900/50">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-400">Overall Danger Level</span>
+                <span className="text-sm text-gray-400">ระดับความอันตรายโดยรวม</span>
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <div key={i} className={`w-4 h-4 rounded-sm ${i < 4 ? 'bg-purple-500' : 'bg-purple-500/30'}`} />
                   ))}
                 </div>
               </div>
-              <p className="text-xs text-gray-600 mt-2">* Danger level rated by WISE analysts. Subject is aware of this rating. She is pleased.</p>
+              <p className="text-xs text-gray-600 mt-2">* ประเมินโดยนักวิเคราะห์ของ WISE เป้าหมายรับรู้ระดับนี้แล้ว และพอใจมาก</p>
             </div>
           </motion.div>
         </div>

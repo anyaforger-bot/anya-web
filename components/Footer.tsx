@@ -3,21 +3,19 @@
 import { motion } from 'framer-motion'
 
 const links = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Quotes', href: '#quotes' },
+  { label: 'เกี่ยวกับ', href: '#about' },
+  { label: 'ทักษะ', href: '#skills' },
+  { label: 'คำคม', href: '#quotes' },
 ]
 
 export default function Footer() {
   return (
     <footer className="relative py-12 px-6 overflow-hidden">
-      {/* Top border line */}
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent, rgba(179,71,255,0.5), rgba(255,71,179,0.5), transparent)' }}
       />
 
-      {/* Subtle background glow */}
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse, rgba(179,71,255,0.08) 0%, transparent 70%)', filter: 'blur(20px)' }}
@@ -25,13 +23,11 @@ export default function Footer() {
 
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo + tagline */}
           <div className="text-center md:text-left">
-            <p className="font-display text-xl font-black shimmer-text mb-1">Anya Forger</p>
-            <p className="text-gray-500 text-xs">Secret Esper · Eden Academy · WISE Adjacent</p>
+            <p className="font-display text-xl font-black shimmer-text mb-1">อาเนีย ฟอร์เจอร์</p>
+            <p className="text-gray-500 text-xs">เอสเปอร์ลับ · Eden Academy · ใกล้ชิด WISE</p>
           </div>
 
-          {/* Nav links */}
           <nav className="flex items-center gap-6">
             {links.map((link) => (
               <a
@@ -44,9 +40,8 @@ export default function Footer() {
             ))}
           </nav>
 
-          {/* Badges */}
           <div className="flex items-center gap-3">
-            {['Esper', 'Spy Kid', 'Peanut Fan'].map((badge) => (
+            {['เอสเปอร์', 'สายลับน้อย', 'คนรักถั่ว'].map((badge) => (
               <span
                 key={badge}
                 className="text-xs px-3 py-1 rounded-full bg-purple-900/30 text-purple-400 border border-purple-800/40"
@@ -57,20 +52,18 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="my-6 border-t border-white/5" />
 
-        {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600">
           <p>
-            &copy; {new Date().getFullYear()} Anya Forger. All thoughts reserved (and already read).
+            &copy; {new Date().getFullYear()} อาเนีย ฟอร์เจอร์ สงวนสิทธิ์ความคิดทุกอย่าง (และอ่านไปหมดแล้ว)
           </p>
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
-            <span>Telepathy online — she knows you&apos;re here</span>
+            <span>เทเลพาธีออนไลน์ — เธอรู้ว่าคุณอยู่ที่นี่</span>
           </div>
           <p className="text-gray-700">
-            Original characters © Tatsuya Endo / Shueisha
+            ตัวละครต้นฉบับ © Tatsuya Endo / Shueisha
           </p>
         </div>
       </div>

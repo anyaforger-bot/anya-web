@@ -5,58 +5,58 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 
 const quotes = [
   {
-    text: 'Heh.',
-    context: 'Said after reading someone\'s mind and discovering they also love peanuts.',
-    mood: 'smug',
+    text: 'เฮ้',
+    context: 'พูดหลังจากอ่านใจใครบางคนแล้วพบว่าเขาก็ชอบถั่วลิสงเหมือนกัน',
+    mood: 'ยิ้มเยาะ',
     emoji: '😏',
     color: 'purple',
   },
   {
-    text: 'WAKU WAKU!',
-    context: 'Upon learning that the school fieldtrip involves potential spy activity.',
-    mood: 'excited',
+    text: 'วากูวากู!',
+    context: 'เมื่อรู้ว่าทริปทัศนศึกษาของโรงเรียนอาจเกี่ยวข้องกับงานสอดแนม',
+    mood: 'ตื่นเต้น',
     emoji: '⚡',
     color: 'yellow',
   },
   {
-    text: 'I am not a child. I am a spy!',
-    context: 'Technically both are true. Anya is committed to both truths simultaneously.',
-    mood: 'determined',
+    text: 'อาเนียไม่ใช่เด็ก อาเนียคือสายลับ!',
+    context: 'จริงทั้งสองอย่าง อาเนียยึดมั่นในความจริงทั้งสองพร้อมกัน',
+    mood: 'มุ่งมั่น',
     emoji: '🕵️',
     color: 'blue',
   },
   {
-    text: 'Anya can do it!',
-    context: 'Before nearly every mission. Success rate: statistically improbable but consistent.',
-    mood: 'confident',
+    text: 'อาเนียทำได้!',
+    context: 'ก่อนแทบทุกภารกิจ อัตราความสำเร็จ: ไม่น่าจะเป็นไปได้ทางสถิติ แต่สม่ำเสมอ',
+    mood: 'มั่นใจ',
     emoji: '💪',
     color: 'pink',
   },
   {
-    text: 'Peanuts are brain food.',
-    context: 'Her justification for eating peanuts instead of studying. Papa agreed to get her to stop talking.',
-    mood: 'wise',
+    text: 'ถั่วลิสงคืออาหารสมอง',
+    context: 'เหตุผลที่ใช้กินถั่วลิสงแทนการเรียน พ่อเห็นด้วยเพื่อให้เธอหยุดพูด',
+    mood: 'ฉลาด',
     emoji: '🥜',
     color: 'orange',
   },
   {
-    text: 'Papa is the coolest person in the world.',
-    context: 'Anya is the only one who knows exactly how true this statement is.',
-    mood: 'wholesome',
+    text: 'พ่อคือคนเท่ที่สุดในโลก',
+    context: 'อาเนียเป็นคนเดียวที่รู้ว่าประโยคนี้จริงแค่ไหน',
+    mood: 'น่ารัก',
     emoji: '💜',
     color: 'pink',
   },
   {
-    text: 'Operation family is a go!',
-    context: 'Internal monologue while also ensuring her fake family stays together forever.',
-    mood: 'mission',
+    text: 'ปฏิบัติการครอบครัว เริ่ม!',
+    context: 'indirectly มั่นใจว่าครอบครัวปลอมจะอยู่ด้วยกันตลอดไป',
+    mood: 'ภารกิจ',
     emoji: '🎯',
     color: 'green',
   },
   {
-    text: 'I will become an imperial scholar!',
-    context: 'Declared loudly. Studying time has not increased. Peanut consumption has.',
-    mood: 'ambitious',
+    text: 'อาเนียจะเป็นนักเรียนจักรพรรดิ!',
+    context: 'ประกาศดังๆ เวลาเรียนไม่ได้เพิ่มขึ้น แต่การกินถั่วลิสงเพิ่มขึ้นมาก',
+    mood: 'ทะเยอทะยาน',
     emoji: '🌟',
     color: 'purple',
   },
@@ -108,30 +108,27 @@ export default function Quotes() {
 
   return (
     <section id="quotes" className="relative py-24 px-6" ref={ref}>
-      {/* Background */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(45,0,96,0.4) 0%, transparent 60%)' }}
       />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">Anya&apos;s Words of Wisdom</p>
+          <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">คำพูดอมตะของอาเนีย</p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4">
-            Iconic <span className="shimmer-text">Quotes</span>
+            คำคม<span className="shimmer-text">สุดอมตะ</span>
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Collected from field transcripts, Eden Academy records, and one very concerning WISE surveillance log.
+            รวบรวมจากบันทึกภาคสนาม บันทึก Eden Academy และบันทึกการเฝ้าระวังของ WISE ที่น่าเป็นห่วงมาก
           </p>
         </motion.div>
 
-        {/* Quote grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {quotes.map((quote, i) => {
             const colors = moodColors[quote.color] || moodColors.purple
@@ -150,10 +147,8 @@ export default function Quotes() {
                   boxShadow: isActive ? `0 0 30px ${colors.border.replace('0.3', '0.3')}` : 'none',
                 }}
               >
-                {/* Emoji */}
-                <div className="text-3xl mb-3 group-hover:animate-bounce-slow">{quote.emoji}</div>
+                <div className="text-3xl mb-3">{quote.emoji}</div>
 
-                {/* Quote text */}
                 <blockquote
                   className="font-display font-bold text-xl leading-tight mb-3"
                   style={{ color: colors.text }}
@@ -161,12 +156,10 @@ export default function Quotes() {
                   &ldquo;{quote.text}&rdquo;
                 </blockquote>
 
-                {/* Mood badge */}
                 <span className={`inline-block text-xs px-2 py-0.5 rounded-full font-medium ${colors.badge} mb-3`}>
                   #{quote.mood}
                 </span>
 
-                {/* Context (expandable) */}
                 <AnimatePresence>
                   {isActive && (
                     <motion.p
@@ -182,7 +175,7 @@ export default function Quotes() {
 
                 {!isActive && (
                   <p className="text-xs text-gray-600 hover:text-gray-400 transition-colors">
-                    Click for context →
+                    กดเพื่อดูบริบท →
                   </p>
                 )}
               </motion.div>
@@ -190,7 +183,6 @@ export default function Quotes() {
           })}
         </div>
 
-        {/* Featured big quote */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -204,18 +196,16 @@ export default function Quotes() {
               border: '1px solid rgba(179,71,255,0.3)',
             }}
           >
-            {/* Decorative quotes */}
             <div className="absolute top-4 left-6 text-8xl text-purple-500/10 font-display font-black leading-none select-none">&ldquo;</div>
             <div className="absolute bottom-4 right-6 text-8xl text-pink-500/10 font-display font-black leading-none select-none rotate-180">&rdquo;</div>
 
             <div className="relative z-10">
               <div className="text-4xl mb-4">🌟</div>
               <p className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight mb-4">
-                &ldquo;Even if papa&apos;s missions are dangerous,
-                I will always protect our family.&rdquo;
+                &ldquo;ถึงภารกิจของพ่อจะอันตรายแค่ไหน อาเนียก็จะปกป้องครอบครัวของเราเสมอ&rdquo;
               </p>
-              <p className="text-purple-300 font-semibold">— Anya Forger</p>
-              <p className="text-gray-500 text-xs mt-1">Internal monologue. Classified. Please disregard.</p>
+              <p className="text-purple-300 font-semibold">— อาเนีย ฟอร์เจอร์</p>
+              <p className="text-gray-500 text-xs mt-1">ความคิดภายใน ลับสุดยอด โปรดเพิกเฉย</p>
             </div>
           </div>
         </motion.div>
