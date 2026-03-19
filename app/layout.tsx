@@ -1,20 +1,5 @@
 import type { Metadata } from 'next'
-import { Kanit, Sarabun } from 'next/font/google'
 import './globals.css'
-
-const kanit = Kanit({
-  subsets: ['thai', 'latin'],
-  weight: ['400', '600', '700', '800', '900'],
-  variable: '--font-display',
-  display: 'swap',
-})
-
-const sarabun = Sarabun({
-  subsets: ['thai', 'latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-body',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'Anya Forger — Secret Esper',
@@ -27,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html suppressHydrationWarning className={`${kanit.variable} ${sarabun.variable}`}>
+    <html suppressHydrationWarning>
       <body className="bg-[#0a0010] text-white antialiased">{children}</body>
     </html>
   )

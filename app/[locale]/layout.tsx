@@ -6,6 +6,22 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
+// Font config per locale from Bunny CDN
+const fontLinks: Record<string, { href: string; vars: string }> = {
+  th: {
+    href: 'https://fonts.bunny.net/css?family=kanit:400,600,700,800,900|sarabun:300,400,500,600&display=swap',
+    vars: "--font-display: 'Kanit', sans-serif; --font-body: 'Sarabun', sans-serif;",
+  },
+  ja: {
+    href: 'https://fonts.bunny.net/css?family=zen-kaku-gothic-new:400,700,900|noto-sans-jp:300,400,500&display=swap',
+    vars: "--font-display: 'Zen Kaku Gothic New', sans-serif; --font-body: 'Noto Sans JP', sans-serif;",
+  },
+  en: {
+    href: 'https://fonts.bunny.net/css?family=outfit:400,600,700,800,900|inter:300,400,500,600&display=swap',
+    vars: "--font-display: 'Outfit', sans-serif; --font-body: 'Inter', sans-serif;",
+  },
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -14,14 +30,16 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-
-  // Enable static rendering
   setRequestLocale(locale)
 
   const messages = await getMessages()
+  const font = fontLinks[locale] ?? fontLinks.en
 
   return (
     <>
+      <link rel="preconnect" href="https://fonts.bunny.net" />
+      <link rel="stylesheet" href={font.href} />
+      <style>{`:root { ${font.vars} }`}</style>
       <script
         dangerouslySetInnerHTML={{ __html: `document.documentElement.lang='${locale}'` }}
       />
