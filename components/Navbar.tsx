@@ -1,25 +1,49 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import LanguageSwitcher from './LanguageSwitcher'
+
+const SECTIONS = ['hero', 'about', 'skills', 'quotes']
 
 export default function Navbar() {
   const t = useTranslations('navbar')
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState<string>('')
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
   const navLinks = [
-    { href: '#about', label: t('about') },
-    { href: '#skills', label: t('skills') },
-    { href: '#quotes', label: t('quotes') },
+    { href: '#about', label: t('about'), id: 'about' },
+    { href: '#skills', label: t('skills'), id: 'skills' },
+    { href: '#quotes', label: t('quotes'), id: 'quotes' },
   ]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const sectionEls = SECTIONS.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[]
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        // Pick the entry with largest intersection ratio that is intersecting
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+        if (visible.length > 0) {
+          setActiveSection(visible[0].target.id)
+        }
+      },
+      { threshold: [0.2, 0.5], rootMargin: '-10% 0px -10% 0px' },
+    )
+
+    sectionEls.forEach((el) => observerRef.current!.observe(el))
+    return () => observerRef.current?.disconnect()
   }, [])
 
   return (
@@ -38,16 +62,25 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-gray-300 hover:text-neon-purple transition-colors duration-200 relative group"
-            >
-              {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`text-sm transition-colors duration-200 relative group ${
+                  isActive ? 'text-purple-400' : 'text-gray-300 hover:text-neon-purple'
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute -bottom-1 left-0 h-px bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 ${
+                    isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                />
+              </a>
+            )
+          })}
           <a
             href="#quotes"
             className="px-4 py-1.5 text-sm rounded-full border border-purple-500/50 text-purple-300 hover:border-purple-400 hover:text-white hover:shadow-[0_0_15px_#b347ff44] transition-all duration-300"
@@ -84,16 +117,21 @@ export default function Navbar() {
             className="md:hidden bg-[#0a0010]/95 backdrop-blur-md border-b border-purple-900/40"
           >
             <div className="px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-gray-300 hover:text-purple-400 transition-colors py-1"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={`transition-colors py-1 ${
+                      isActive ? 'text-purple-400 underline underline-offset-4' : 'text-gray-300 hover:text-purple-400'
+                    }`}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                )
+              })}
             </div>
           </motion.div>
         )}

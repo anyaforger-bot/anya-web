@@ -1,9 +1,38 @@
+import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
+}
+
+const seoMeta: Record<string, { title: string; description: string }> = {
+  en: {
+    title: 'Anya Forger — Secret Esper',
+    description: 'Secret Esper. Top Student. Absolute Chaos.',
+  },
+  th: {
+    title: 'อาเนีย ฟอร์เจอร์ — เอสเปอร์ลับ',
+    description: 'เอสเปอร์ลับ. นักเรียนดีเด่น. ต้นเหตุความวุ่นวาย.',
+  },
+  ja: {
+    title: 'アーニャ・フォージャー — 秘密のエスパー',
+    description: '秘密のエスパー。優等生。絶対的な混乱。',
+  },
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const meta = seoMeta[locale] ?? seoMeta.en
+  return {
+    title: meta.title,
+    description: meta.description,
+  }
 }
 
 // Font config per locale from Bunny CDN
