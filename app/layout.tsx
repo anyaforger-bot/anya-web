@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter } from 'next/font/google'
+import { Kanit, Sarabun } from 'next/font/google'
 import './globals.css'
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
+const kanit = Kanit({
+  subsets: ['thai', 'latin'],
+  weight: ['400', '600', '700', '800', '900'],
   variable: '--font-display',
   display: 'swap',
 })
 
-const inter = Inter({
-  subsets: ['latin'],
+const sarabun = Sarabun({
+  subsets: ['thai', 'latin'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-body',
   display: 'swap',
 })
@@ -29,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="th" className={`${kanit.variable} ${sarabun.variable}`}>
       <body className="bg-[#0a0010] text-white antialiased">{children}</body>
     </html>
   )
