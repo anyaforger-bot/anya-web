@@ -2,16 +2,15 @@
 
 import { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-
-const taglines = [
-  'เอสเปอร์ลับ',
-  'นักเรียนดีเด่น',
-  'ต้นเหตุความวุ่นวาย',
-]
+import { useTranslations } from 'next-intl'
 
 const floatingEmojis = ['⭐', '💜', '✨', '🌸', '💫', '🔮', '🌙']
 
 export default function Hero() {
+  const t = useTranslations('hero')
+
+  const taglines = [t('tagline0'), t('tagline1'), t('tagline2')]
+
   const [currentTagline, setCurrentTagline] = useState(0)
   const [displayText, setDisplayText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
@@ -34,7 +33,7 @@ export default function Hero() {
     }
 
     return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, currentTagline])
+  }, [displayText, isDeleting, currentTagline, taglines])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -53,6 +52,13 @@ export default function Hero() {
     }, 1200)
     return () => clearInterval(interval)
   }, [])
+
+  const stats = [
+    { label: t('statMindsRead'), value: '∞' },
+    { label: t('statPeanuts'), value: '9,999+' },
+    { label: t('statImperial'), value: t('statImperialValue') },
+    { label: t('statChaos'), value: t('statChaosValue') },
+  ]
 
   return (
     <section
@@ -99,7 +105,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card glow-border-purple text-sm text-purple-300 mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-          <span>Eden Academy · ชั้นปีที่ 1 · รหัส: ลูกสาวของ TWILIGHT</span>
+          <span>{t('badge')}</span>
         </motion.div>
 
         <motion.h1
@@ -108,9 +114,9 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
           className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black mb-6 leading-none"
         >
-          <span className="shimmer-text">อาเนีย</span>
+          <span className="shimmer-text">{t('firstName')}</span>
           <br />
-          <span className="text-white">ฟอร์เจอร์</span>
+          <span className="text-white">{t('lastName')}</span>
         </motion.h1>
 
         <motion.div
@@ -131,8 +137,8 @@ export default function Hero() {
           transition={{ delay: 1.0 }}
           className="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto mb-12 leading-relaxed"
         >
-          อายุ 6 ขวบ นักเรียน Eden Academy ชอบถั่วลิสง{' '}
-          <span className="text-purple-400">และรู้ทุกความคิดในหัวคุณอยู่แล้ว</span>
+          {t('subtitle')}{' '}
+          <span className="text-purple-400">{t('subtitleHighlight')}</span>
         </motion.p>
 
         <motion.div
@@ -146,14 +152,14 @@ export default function Hero() {
             className="group relative px-8 py-3.5 rounded-full font-semibold text-white overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_#b347ff66]"
             style={{ background: 'linear-gradient(135deg, #7c2ff7, #c940b0)' }}
           >
-            <span className="relative z-10">รู้จักอาเนีย</span>
+            <span className="relative z-10">{t('cta1')}</span>
             <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
           <a
             href="#quotes"
             className="px-8 py-3.5 rounded-full font-semibold text-purple-300 border border-purple-500/50 hover:border-purple-400 hover:text-white hover:bg-purple-900/20 transition-all duration-300"
           >
-            วากูวากู! ✨
+            {t('cta2')}
           </a>
         </motion.div>
 
@@ -163,12 +169,7 @@ export default function Hero() {
           transition={{ delay: 1.5 }}
           className="mt-16 flex flex-wrap items-center justify-center gap-8 text-center"
         >
-          {[
-            { label: 'จิตที่อ่านไปแล้ว', value: '∞' },
-            { label: 'ถั่วลิสงที่กินไป', value: '9,999+' },
-            { label: 'นักเรียนจักรพรรดิ', value: 'เกือบแล้ว' },
-            { label: 'ระดับความวุ่นวาย', value: 'สูงสุด' },
-          ].map((stat) => (
+          {stats.map((stat) => (
             <div key={stat.label} className="flex flex-col items-center">
               <span className="text-2xl font-black shimmer-text">{stat.value}</span>
               <span className="text-xs text-gray-500 mt-1 uppercase tracking-widest">{stat.label}</span>
@@ -183,7 +184,7 @@ export default function Hero() {
         transition={{ delay: 2 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-600 text-xs"
       >
-        <span className="uppercase tracking-widest">เลื่อนลง</span>
+        <span className="uppercase tracking-widest">{t('scrollDown')}</span>
         <div className="w-px h-12 bg-gradient-to-b from-purple-500/50 to-transparent animate-bounce-slow" />
       </motion.div>
     </section>

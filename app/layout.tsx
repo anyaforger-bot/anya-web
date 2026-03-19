@@ -19,10 +19,6 @@ const sarabun = Sarabun({
 export const metadata: Metadata = {
   title: 'Anya Forger — Secret Esper',
   description: 'Secret Esper. Top Student. Absolute Chaos.',
-  openGraph: {
-    title: 'Anya Forger — Secret Esper',
-    description: 'WAKU WAKU! Welcome to the official Anya Forger experience.',
-  },
 }
 
 export default function RootLayout({
@@ -31,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="th" className={`${kanit.variable} ${sarabun.variable}`}>
+    <html suppressHydrationWarning className={`${kanit.variable} ${sarabun.variable}`}>
       <body className="bg-[#0a0010] text-white antialiased">{children}</body>
     </html>
   )

@@ -2,65 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-
-const quotes = [
-  {
-    text: 'เฮ้',
-    context: 'พูดหลังจากอ่านใจใครบางคนแล้วพบว่าเขาก็ชอบถั่วลิสงเหมือนกัน',
-    mood: 'ยิ้มเยาะ',
-    emoji: '😏',
-    color: 'purple',
-  },
-  {
-    text: 'วากูวากู!',
-    context: 'เมื่อรู้ว่าทริปทัศนศึกษาของโรงเรียนอาจเกี่ยวข้องกับงานสอดแนม',
-    mood: 'ตื่นเต้น',
-    emoji: '⚡',
-    color: 'yellow',
-  },
-  {
-    text: 'อาเนียไม่ใช่เด็ก อาเนียคือสายลับ!',
-    context: 'จริงทั้งสองอย่าง อาเนียยึดมั่นในความจริงทั้งสองพร้อมกัน',
-    mood: 'มุ่งมั่น',
-    emoji: '🕵️',
-    color: 'blue',
-  },
-  {
-    text: 'อาเนียทำได้!',
-    context: 'ก่อนแทบทุกภารกิจ อัตราความสำเร็จ: ไม่น่าจะเป็นไปได้ทางสถิติ แต่สม่ำเสมอ',
-    mood: 'มั่นใจ',
-    emoji: '💪',
-    color: 'pink',
-  },
-  {
-    text: 'ถั่วลิสงคืออาหารสมอง',
-    context: 'เหตุผลที่ใช้กินถั่วลิสงแทนการเรียน พ่อเห็นด้วยเพื่อให้เธอหยุดพูด',
-    mood: 'ฉลาด',
-    emoji: '🥜',
-    color: 'orange',
-  },
-  {
-    text: 'พ่อคือคนเท่ที่สุดในโลก',
-    context: 'อาเนียเป็นคนเดียวที่รู้ว่าประโยคนี้จริงแค่ไหน',
-    mood: 'น่ารัก',
-    emoji: '💜',
-    color: 'pink',
-  },
-  {
-    text: 'ปฏิบัติการครอบครัว เริ่ม!',
-    context: 'indirectly มั่นใจว่าครอบครัวปลอมจะอยู่ด้วยกันตลอดไป',
-    mood: 'ภารกิจ',
-    emoji: '🎯',
-    color: 'green',
-  },
-  {
-    text: 'อาเนียจะเป็นนักเรียนจักรพรรดิ!',
-    context: 'ประกาศดังๆ เวลาเรียนไม่ได้เพิ่มขึ้น แต่การกินถั่วลิสงเพิ่มขึ้นมาก',
-    mood: 'ทะเยอทะยาน',
-    emoji: '🌟',
-    color: 'purple',
-  },
-]
+import { useTranslations } from 'next-intl'
 
 const moodColors: Record<string, { bg: string; border: string; text: string; badge: string }> = {
   purple: {
@@ -101,10 +43,25 @@ const moodColors: Record<string, { bg: string; border: string; text: string; bad
   },
 }
 
+const quoteColors = ['purple', 'yellow', 'blue', 'pink', 'orange', 'pink', 'green', 'purple']
+const quoteEmojis = ['😏', '⚡', '🕵️', '💪', '🥜', '💜', '🎯', '🌟']
+
 export default function Quotes() {
+  const t = useTranslations('quotes')
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
   const [active, setActive] = useState<number | null>(null)
+
+  const quotes = [
+    { text: t('quote0Text'), context: t('quote0Context'), mood: t('quote0Mood'), emoji: quoteEmojis[0], color: quoteColors[0] },
+    { text: t('quote1Text'), context: t('quote1Context'), mood: t('quote1Mood'), emoji: quoteEmojis[1], color: quoteColors[1] },
+    { text: t('quote2Text'), context: t('quote2Context'), mood: t('quote2Mood'), emoji: quoteEmojis[2], color: quoteColors[2] },
+    { text: t('quote3Text'), context: t('quote3Context'), mood: t('quote3Mood'), emoji: quoteEmojis[3], color: quoteColors[3] },
+    { text: t('quote4Text'), context: t('quote4Context'), mood: t('quote4Mood'), emoji: quoteEmojis[4], color: quoteColors[4] },
+    { text: t('quote5Text'), context: t('quote5Context'), mood: t('quote5Mood'), emoji: quoteEmojis[5], color: quoteColors[5] },
+    { text: t('quote6Text'), context: t('quote6Context'), mood: t('quote6Mood'), emoji: quoteEmojis[6], color: quoteColors[6] },
+    { text: t('quote7Text'), context: t('quote7Context'), mood: t('quote7Mood'), emoji: quoteEmojis[7], color: quoteColors[7] },
+  ]
 
   return (
     <section id="quotes" className="relative py-24 px-6" ref={ref}>
@@ -120,12 +77,12 @@ export default function Quotes() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">คำพูดอมตะของอาเนีย</p>
+          <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">{t('sectionLabel')}</p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4">
-            คำคม<span className="shimmer-text">สุดอมตะ</span>
+            {t('titlePrefix')}<span className="shimmer-text">{t('titleHighlight')}</span>{t('titleSuffix')}
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            รวบรวมจากบันทึกภาคสนาม บันทึก Eden Academy และบันทึกการเฝ้าระวังของ WISE ที่น่าเป็นห่วงมาก
+            {t('subtitle')}
           </p>
         </motion.div>
 
@@ -175,7 +132,7 @@ export default function Quotes() {
 
                 {!isActive && (
                   <p className="text-xs text-gray-600 hover:text-gray-400 transition-colors">
-                    กดเพื่อดูบริบท →
+                    {t('clickForContext')}
                   </p>
                 )}
               </motion.div>
@@ -202,10 +159,10 @@ export default function Quotes() {
             <div className="relative z-10">
               <div className="text-4xl mb-4">🌟</div>
               <p className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight mb-4">
-                &ldquo;ถึงภารกิจของพ่อจะอันตรายแค่ไหน อาเนียก็จะปกป้องครอบครัวของเราเสมอ&rdquo;
+                &ldquo;{t('featuredQuote')}&rdquo;
               </p>
-              <p className="text-purple-300 font-semibold">— อาเนีย ฟอร์เจอร์</p>
-              <p className="text-gray-500 text-xs mt-1">ความคิดภายใน ลับสุดยอด โปรดเพิกเฉย</p>
+              <p className="text-purple-300 font-semibold">{t('featuredAttrib')}</p>
+              <p className="text-gray-500 text-xs mt-1">{t('featuredNote')}</p>
             </div>
           </div>
         </motion.div>

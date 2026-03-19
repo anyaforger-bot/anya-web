@@ -2,24 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
-const stats = [
-  { label: 'อ่านใจ', value: 99, color: 'from-purple-500 to-violet-400', icon: '🔮' },
-  { label: 'กินถั่วลิสง', value: 100, color: 'from-yellow-500 to-amber-400', icon: '🥜' },
-  { label: 'ตั้งใจเรียน', value: 12, color: 'from-pink-500 to-rose-400', icon: '📚' },
-  { label: 'แกล้งทำเป็นเด็กดี', value: 97, color: 'from-blue-500 to-cyan-400', icon: '😇' },
-  { label: 'ความสำเร็จของภารกิจ', value: 78, color: 'from-green-500 to-emerald-400', icon: '🕵️' },
-  { label: 'สร้างความวุ่นวาย', value: 95, color: 'from-red-500 to-orange-400', icon: '💥' },
-]
-
-const traits = [
-  { icon: '🔮', title: 'พลังเอสเปอร์', desc: 'อ่านใจคนได้ตลอดเวลา และใช้มันอย่างรับผิดชอบ (ไม่ได้ใช้เลย)' },
-  { icon: '🥜', title: 'ผู้เชี่ยวชาญถั่วลิสง', desc: 'มีความรู้ลึกซึ้งเรื่องถั่วลิสงทุกชนิด พร้อมแลกความลับชาติเพื่อของกิน' },
-  { icon: '🎭', title: 'ปรมาจารย์แสร้งทำ', desc: 'แสดงเป็นเด็กธรรมดาทุกวัน ถือเป็นการแสดงระดับออสการ์' },
-  { icon: '💜', title: 'ใจอ่อนในที่ลับ', desc: 'ต้องการแค่ให้ครอบครัวอยู่ด้วยกัน อย่าบอกใครนะ' },
-]
-
-function StatBar({ stat, animate }: { stat: typeof stats[0]; animate: boolean }) {
+function StatBar({ stat, animate }: { stat: { label: string; value: number; color: string; icon: string }; animate: boolean }) {
   return (
     <div className="group">
       <div className="flex justify-between items-center mb-2">
@@ -43,6 +28,7 @@ function StatBar({ stat, animate }: { stat: typeof stats[0]; animate: boolean })
 }
 
 export default function About() {
+  const t = useTranslations('about')
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   const [animate, setAnimate] = useState(false)
@@ -50,6 +36,22 @@ export default function About() {
   useEffect(() => {
     if (isInView) setTimeout(() => setAnimate(true), 200)
   }, [isInView])
+
+  const traits = [
+    { icon: '🔮', title: t('trait0Title'), desc: t('trait0Desc') },
+    { icon: '🥜', title: t('trait1Title'), desc: t('trait1Desc') },
+    { icon: '🎭', title: t('trait2Title'), desc: t('trait2Desc') },
+    { icon: '💜', title: t('trait3Title'), desc: t('trait3Desc') },
+  ]
+
+  const stats = [
+    { label: t('stat0'), value: 99, color: 'from-purple-500 to-violet-400', icon: '🔮' },
+    { label: t('stat1'), value: 100, color: 'from-yellow-500 to-amber-400', icon: '🥜' },
+    { label: t('stat2'), value: 12, color: 'from-pink-500 to-rose-400', icon: '📚' },
+    { label: t('stat3'), value: 97, color: 'from-blue-500 to-cyan-400', icon: '😇' },
+    { label: t('stat4'), value: 78, color: 'from-green-500 to-emerald-400', icon: '🕵️' },
+    { label: t('stat5'), value: 95, color: 'from-red-500 to-orange-400', icon: '💥' },
+  ]
 
   return (
     <section id="about" className="relative py-24 px-6" ref={ref}>
@@ -71,12 +73,12 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-purple-400 text-sm font-semibold uppercase tracking-widest mb-3">แฟ้มข้อมูลลับ</p>
+          <p className="text-purple-400 text-sm font-semibold uppercase tracking-widest mb-3">{t('sectionLabel')}</p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4">
-            เกี่ยวกับ <span className="shimmer-text">อาเนีย</span>
+            {t('titlePrefix')}<span className="shimmer-text">{t('titleHighlight')}</span>{t('titleSuffix')}
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            แฟ้มลับของเป้าหมาย A โปรดระวังเป็นพิเศษ อย่าให้เธอจับได้ว่ากำลังอ่านอยู่ เพราะเธอรู้อยู่แล้ว
+            {t('subtitle')}
           </p>
         </motion.div>
 
@@ -109,9 +111,9 @@ export default function About() {
             >
               <div className="absolute top-4 left-4 text-6xl text-purple-500/20 font-display font-black leading-none">&ldquo;</div>
               <p className="relative z-10 text-lg text-gray-200 italic leading-relaxed pt-4 pl-4">
-                เฮ้ อาเนียรู้ว่าคุณกำลังคิดอะไรอยู่ คุณคิดว่าอาเนียเป็นแค่เด็กเล็กๆ นั่นแหละที่อาเนียอยากให้คิด
+                {t('quote')}
               </p>
-              <p className="mt-3 text-purple-400 text-sm font-semibold text-right">— อาเนีย ฟอร์เจอร์ (น่าจะพูด)</p>
+              <p className="mt-3 text-purple-400 text-sm font-semibold text-right">{t('quoteAttrib')}</p>
             </motion.div>
           </div>
 
@@ -125,8 +127,8 @@ export default function About() {
               <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #7c2ff7, #c940b0)' }}>
                 <span className="text-sm">📊</span>
               </div>
-              <h3 className="font-bold text-white">สถิติตัวละคร</h3>
-              <span className="ml-auto text-xs text-purple-400 bg-purple-900/30 px-2 py-0.5 rounded-full">ลับสุดยอด</span>
+              <h3 className="font-bold text-white">{t('statsTitle')}</h3>
+              <span className="ml-auto text-xs text-purple-400 bg-purple-900/30 px-2 py-0.5 rounded-full">{t('statsLabel')}</span>
             </div>
 
             <div className="space-y-6">
@@ -144,14 +146,14 @@ export default function About() {
 
             <div className="mt-8 pt-6 border-t border-purple-900/50">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-400">ระดับความอันตรายโดยรวม</span>
+                <span className="text-sm text-gray-400">{t('dangerLabel')}</span>
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <div key={i} className={`w-4 h-4 rounded-sm ${i < 4 ? 'bg-purple-500' : 'bg-purple-500/30'}`} />
                   ))}
                 </div>
               </div>
-              <p className="text-xs text-gray-600 mt-2">* ประเมินโดยนักวิเคราะห์ของ WISE เป้าหมายรับรู้ระดับนี้แล้ว และพอใจมาก</p>
+              <p className="text-xs text-gray-600 mt-2">{t('dangerNote')}</p>
             </div>
           </motion.div>
         </div>

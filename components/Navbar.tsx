@@ -2,16 +2,19 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-
-const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#quotes', label: 'Quotes' },
-]
+import { useTranslations } from 'next-intl'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Navbar() {
+  const t = useTranslations('navbar')
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const navLinks = [
+    { href: '#about', label: t('about') },
+    { href: '#skills', label: t('skills') },
+    { href: '#quotes', label: t('quotes') },
+  ]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -30,11 +33,11 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" className="font-display text-xl font-bold shimmer-text">
-          Anya Forger
+          {t('brand')}
         </a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -49,22 +52,26 @@ export default function Navbar() {
             href="#quotes"
             className="px-4 py-1.5 text-sm rounded-full border border-purple-500/50 text-purple-300 hover:border-purple-400 hover:text-white hover:shadow-[0_0_15px_#b347ff44] transition-all duration-300"
           >
-            WAKU WAKU ✨
+            {t('wakuWaku')}
           </a>
+          <LanguageSwitcher />
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden text-gray-300 hover:text-white"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <div className="w-6 flex flex-col gap-1.5">
-            <span className={`h-0.5 bg-current transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`h-0.5 bg-current transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-            <span className={`h-0.5 bg-current transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-          </div>
-        </button>
+        {/* Mobile right side */}
+        <div className="flex md:hidden items-center gap-3">
+          <LanguageSwitcher />
+          <button
+            className="text-gray-300 hover:text-white"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <div className="w-6 flex flex-col gap-1.5">
+              <span className={`h-0.5 bg-current transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+              <span className={`h-0.5 bg-current transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+              <span className={`h-0.5 bg-current transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
