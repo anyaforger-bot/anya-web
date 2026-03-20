@@ -10,6 +10,8 @@ export default function Footer() {
     { label: t('about'), href: '#about' },
     { label: t('skills'), href: '#skills' },
     { label: t('quotes'), href: '#quotes' },
+    { label: t('contact'), href: '#contact' },
+    { label: t('github'), href: 'https://github.com/anyaforger-bot', external: true },
   ]
 
   const badges = [t('badge0'), t('badge1'), t('badge2')]
@@ -33,11 +35,13 @@ export default function Footer() {
             <p className="text-gray-500 text-xs">{t('tagline')}</p>
           </div>
 
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-6 flex-wrap justify-center">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
+                target={'external' in link && link.external ? '_blank' : undefined}
+                rel={'external' in link && link.external ? 'noopener noreferrer' : undefined}
                 className="text-sm text-gray-500 hover:text-purple-400 transition-colors duration-200"
               >
                 {link.label}

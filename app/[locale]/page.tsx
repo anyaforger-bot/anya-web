@@ -3,11 +3,13 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Skills from '@/components/Skills'
 import Quotes from '@/components/Quotes'
+import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import StarField from '@/components/StarField'
 import Navbar from '@/components/Navbar'
 import EasterEgg from '@/components/EasterEgg'
 import LoadingScreen from '@/components/LoadingScreen'
+import ScrollToTop from '@/components/ScrollToTop'
 
 export default async function LocalePage({
   params,
@@ -27,7 +29,9 @@ export default async function LocalePage({
       <About />
       <Skills />
       <Quotes />
+      <Contact />
       <Footer />
+      <ScrollToTop />
     </main>
   )
 }

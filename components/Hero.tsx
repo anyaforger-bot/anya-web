@@ -99,6 +99,34 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-4xl mx-auto">
         <motion.div
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+          className="flex items-center justify-center mb-8"
+        >
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+            className="absolute w-44 h-44 rounded-full"
+            style={{
+              background: 'conic-gradient(from 0deg, #7c2ff7, #c940b0, #47b3ff, #7c2ff7)',
+              filter: 'blur(2px)',
+              opacity: 0.6,
+            }}
+          />
+          <div
+            className="relative w-40 h-40 rounded-full flex items-center justify-center text-7xl select-none"
+            style={{
+              background: 'radial-gradient(circle at 40% 35%, #3d0080, #0a0010)',
+              boxShadow: '0 0 40px rgba(179,71,255,0.6), 0 0 80px rgba(179,71,255,0.2)',
+              border: '2px solid rgba(179,71,255,0.5)',
+            }}
+          >
+            🎀
+          </div>
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
