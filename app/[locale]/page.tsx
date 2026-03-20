@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import { setRequestLocale } from 'next-intl/server'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
@@ -7,9 +8,13 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import StarField from '@/components/StarField'
 import Navbar from '@/components/Navbar'
-import EasterEgg from '@/components/EasterEgg'
 import LoadingScreen from '@/components/LoadingScreen'
 import ScrollToTop from '@/components/ScrollToTop'
+
+const EasterEgg = dynamic(() => import('@/components/EasterEgg'), {
+  ssr: false,
+  loading: () => null,
+})
 
 export default async function LocalePage({
   params,

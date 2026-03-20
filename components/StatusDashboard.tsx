@@ -3,16 +3,9 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from '@/i18n/navigation'
+import type { Commit } from '@/lib/getCommits'
 
 const ANYA_FRAMES = ['(>‿◠)✌', '(>‿◡)✌', '(^‿^)✌', '(≧◡≦)✌']
-
-const COMMITS = [
-  { hash: 'e8c8794', message: 'feat: SEO per locale, easter egg, active nav, loading screen' },
-  { hash: '5398f37', message: 'feat: use Bunny CDN fonts per locale (en/th/ja)' },
-  { hash: '8b599cc', message: 'feat: add i18n support (en/th/ja)' },
-  { hash: 'db56807', message: 'feat: translate all content to Thai' },
-  { hash: '050f6e7', message: 'feat: switch to Thai fonts (Kanit + Sarabun) and lang=th' },
-]
 
 const SYSTEM_STATUS = [
   { label: 'Telepathy Module', status: 'ONLINE', dot: '🟢', textClass: 'text-green-400' },
@@ -21,7 +14,7 @@ const SYSTEM_STATUS = [
   { label: 'Papa Detection', status: 'DETECTED (he suspects nothing)', dot: '🔴', textClass: 'text-red-400' },
 ]
 
-export default function StatusDashboard() {
+export default function StatusDashboard({ commits }: { commits: Commit[] }) {
   const [frame, setFrame] = useState(0)
   const [blink, setBlink] = useState(true)
   const [time, setTime] = useState('')
@@ -116,7 +109,7 @@ export default function StatusDashboard() {
             <div className="text-green-800 text-xs mb-3 select-none">
               $ git log --oneline -5
             </div>
-            {COMMITS.map((commit, i) => (
+            {commits.map((commit, i) => (
               <motion.div
                 key={commit.hash}
                 initial={{ opacity: 0, x: -10 }}
